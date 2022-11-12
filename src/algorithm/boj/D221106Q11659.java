@@ -27,9 +27,9 @@ public class D221106Q11659 {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < M; i++) {
             st = new StringTokenizer(br.readLine());
-            int start = Integer.parseInt(st.nextToken());
-            int end = Integer.parseInt(st.nextToken());
-            int ans = arr[end] - arr[start - 1];
+            int start = Integer.parseInt(st.nextToken());   // 시작구간
+            int end = Integer.parseInt(st.nextToken());     // 종료구간
+            int ans = arr[end] - arr[start - 1];            // 주어진 구간의 합
             sb.append(ans).append("\n");
         }
         // 결과 출력
