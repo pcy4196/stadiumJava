@@ -20,8 +20,8 @@ public class D221019Q11720 {
         int N = Integer.parseInt(st.nextToken());       // 숫자의 개수
         char[] numArr = br.readLine().toCharArray();    // N개의 숫자를 배열 형태로 저장
         for (char c : numArr) {
-            sum += Character.getNumericValue(c);        // 1. char -> int Character 메서드 사용
-//            sum += c - '0';                             // 2. Ascii code 를 활용하여 char -> int 로 변형
+//            sum += Character.getNumericValue(c);        // 1. char -> int Character 메서드 사용
+            sum += c - '0';                             // 2. Ascii code 를 활용하여 char -> int 로 변형
         }
 
         System.out.println(sum);
