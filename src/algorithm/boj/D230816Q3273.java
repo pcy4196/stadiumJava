@@ -3,37 +3,51 @@ package algorithm.boj;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.StringTokenizer;
 
-public class D221106Q11659 {
+public class D230816Q3273 {
 
-    // 2022-11-06
+    // 2023-08-16
     // 백준온라인 알고리즘 풀이
-    // 백준(BOJ) SILVER3 구간 합 구하기 4
-    // 문제 URL : https://www.acmicpc.net/problem/11659
+    // 백준(BOJ) SILVER3 두 수의 합
+    // 문제 URL : https://www.acmicpc.net/problem/3273
+
+    private static Integer N;
+    private static Integer X;
+    private static Integer[] arr;
+
+    private static int solution() {
+        int answer = 0;
+        // n개의 서로 다른 양의 정수를 담기 위해 사용하는 hashMap
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < arr.length; i++) {
+            if (map.getOrDefault(X - arr[i], 0) == 1) {
+                // 저장했던 수와 현재 수의 합이 target 일 경우 answer값 증가
+                answer++;
+            } else {
+                // 타켓 수가 안될경우 해당 숫자 map에 저장
+                map.put(arr[i], 1);
+            }
+        }
+        return answer;
+    }
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // 1. 수열의 크기 정의
+        N = Integer.parseInt(br.readLine());
+        arr = new Integer[N];
+        // 2. 수열에 포함되어 있는 수 설정
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int N = Integer.parseInt(st.nextToken());       // 수의개수
-        int M = Integer.parseInt(st.nextToken());       // 합을 구해야하는 횟수
-        int[] arr = new int[N+1];                       // N번째 까지의 합을 가지고 있는 배열
-        int sum = 0;                                    // 합을 가지고 있는 임시변수
-        st = new StringTokenizer(br.readLine());
-        for (int i = 1; i <= N; i++) {
-            sum += Integer.parseInt(st.nextToken());
-            arr[i] = sum;
+        for (int i = 0; i < N; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
         }
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < M; i++) {
-            st = new StringTokenizer(br.readLine());
-            int start = Integer.parseInt(st.nextToken());   // 시작구간
-            int end = Integer.parseInt(st.nextToken());     // 종료구간
-            int ans = arr[end] - arr[start - 1];            // 주어진 구간의 합
-            sb.append(ans).append("\n");
-        }
-        // 결과 출력
-        System.out.println(sb.toString());
+        // 3. 합을 구해야 하는 타켓 숫자
+        X = Integer.parseInt(br.readLine());
+
+        System.out.println(solution());
     }
+
 
 }
